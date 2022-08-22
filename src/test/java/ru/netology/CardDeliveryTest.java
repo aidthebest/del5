@@ -35,9 +35,8 @@ public class CardDeliveryTest {
     void shouldGetSuccesfulNotification() {
         String planningDate = generateDate(4);
         Configuration.holdBrowserOpen = true;
-        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
-        System.setProperty("selenide.browser", "Chrome");
-//        open("http://localhost:9999");
+//        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+//        System.setProperty("selenide.browser", "Chrome");
         $x("//input[@placeholder='Город']").val("Рязань").pressEscape();
         $x("//input[@placeholder='Дата встречи']").doubleClick().pressEscape().sendKeys(planningDate);
         $x("//input[@name='name']").val("Семин Денис");
