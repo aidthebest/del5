@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -25,11 +26,18 @@ public class CardDeliveryTest {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
+    @BeforeEach
+    public void setUp() {
+        open("http://localhost:9999");
+    }
+
     @Test
     void shouldGetSuccesfulNotification() {
         String planningDate = generateDate(4);
-        open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        System.setProperty("selenide.browser", "Chrome");
+//        open("http://localhost:9999");
         $x("//input[@placeholder='Город']").val("Рязань").pressEscape();
         $x("//input[@placeholder='Дата встречи']").doubleClick().pressEscape().sendKeys(planningDate);
         $x("//input[@name='name']").val("Семин Денис");
